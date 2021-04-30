@@ -25,6 +25,6 @@
   },
   "homepage": "https://github.com/SilentCicero/hyperapp-styled-components#readme",
   "dependencies": {
-    "hyperapp": "^2.0.4"
+    "hyperapp": "^1.2.10"
   }
 }
