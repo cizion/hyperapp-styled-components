@@ -25,6 +25,6 @@
   },
   "homepage": "https://github.com/SilentCicero/hyperapp-styled-components#readme",
   "dependencies": {
-    "hyperapp": "^1.2.10"
+    "ryper": "file:../ryper"
   }
 }

@@ -1,5 +1,5 @@
 const doHash = require("./hash");
-const { h } = require("hyperapp");
+const { h, default: React } = require("ryper");
 
 let theme = {};
 let globalCSS = "";
@@ -197,48 +197,49 @@ function appendChildren(children, el) {
 }
 
 function makeElement(tag) {
-  return (strings, ...keys) => (...inputChildren) => {
-    const inputProps = inputChildren[0];
-    const notProps =
-      typeof inputProps !== "object" ||
-      Array.isArray(inputProps) ||
-      inputProps.length === 0 ||
-      (inputProps.tagName && true) ||
-      false ||
-      (inputProps.nodeName && true) ||
-      false;
-    const elProps = notProps ? {} : inputProps;
-    const specifiedProps = elProps.props || {};
-    let children = (notProps ? inputChildren : inputChildren.slice(1)) || [];
+  return (strings, ...keys) =>
+    (...inputChildren) => {
+      const inputProps = inputChildren[0];
+      const notProps =
+        typeof inputProps !== "object" ||
+        Array.isArray(inputProps) ||
+        inputProps.length === 0 ||
+        (inputProps.tagName && true) ||
+        false ||
+        (inputProps.nodeName && true) ||
+        false;
+      const elProps = notProps ? {} : inputProps;
+      const specifiedProps = elProps.props || {};
+      let children = (notProps ? inputChildren : inputChildren.slice(1)) || [];
 
-    if (Array.isArray(children[0])) {
-      children = children[0];
-    }
+      if (Array.isArray(children[0])) {
+        children = children[0];
+      }
 
-    const className = buildAndRenderCSS(
-      strings,
-      keys,
-      Object.assign(
-        {},
-        {
-          theme,
-        },
-        elProps,
-        specifiedProps
-      )
-    );
+      const className = buildAndRenderCSS(
+        strings,
+        keys,
+        Object.assign(
+          {},
+          {
+            theme,
+          },
+          elProps,
+          specifiedProps
+        )
+      );
 
-    const newClassName = [className];
-    elProps.className && newClassName.push(elProps.className);
-    specifiedProps.className && specifiedProps.push(elProps.className);
+      const newClassName = [className];
+      elProps.className && newClassName.push(elProps.className);
+      specifiedProps.className && specifiedProps.push(elProps.className);
 
-    const newProps = Object.assign({}, elProps, {
-      class: newClassName.join(" "),
-    });
-    delete newProps.children;
+      const newProps = Object.assign({}, elProps, {
+        class: newClassName.join(" "),
+      });
+      delete newProps.children;
 
-    return h(tag, newProps, children);
-  };
+      return h(tag, newProps, children);
+    };
 }
 
 export default function styled(el) {
@@ -390,3 +391,7 @@ export const presets = (styled.presets = {
 
 styled.tags.forEach((tag) => (styled[tag] = makeElement(tag)));
 export const keyframes = (styled.keyframes = makeKeyframes);
+export const ThemeProvider = ({ theme, key }, children) => {
+  setTheme(theme);
+  return React.Fragment({ key }, children);
+};
