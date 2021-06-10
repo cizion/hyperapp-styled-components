@@ -1,5 +1,5 @@
 const doHash = require("./hash");
-const { h, default: React } = require("ryper");
+const { h } = require("hyperapp");
 
 let theme = {};
 let globalCSS = "";
@@ -393,5 +393,5 @@ styled.tags.forEach((tag) => (styled[tag] = makeElement(tag)));
 export const keyframes = (styled.keyframes = makeKeyframes);
 export const ThemeProvider = ({ theme, key }, children) => {
   setTheme(theme);
-  return React.Fragment({ key }, children);
+  return h("", { key }, children);
 };
