@@ -21,6 +21,7 @@ export function escapeChars(str) {
 
 export function joinTemplate(strings, keys, state) {
   let output = "";
+  console.log(strings);
 
   strings.forEach((str, index) => {
     if (keys.length >= index) {
@@ -394,4 +395,11 @@ export const keyframes = (styled.keyframes = makeKeyframes);
 export const ThemeProvider = ({ theme, key }, children) => {
   setTheme(theme);
   return h("", { key }, children);
+};
+export const createGlobalStyle = (strings) => {
+  console.log("aaa", strings);
+  injectGlobal(strings);
+  buildAndRenderCSS([], [], { theme }, false);
+
+  return () => h("", {}, []);
 };
