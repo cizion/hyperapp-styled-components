@@ -374,7 +374,6 @@ export const tags = (styled.tags = [
   "var",
   "video",
   "wbr",
-  "이거슨 틀리다",
 ]);
 
 export const presets = (styled.presets = {
