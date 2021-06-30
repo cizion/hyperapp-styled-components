@@ -1,34 +1,47 @@
 {
-  "name": "hyperapp-styled-components",
-  "version": "0.1.2",
-  "description": "A styled-components implementation for hyperapp (<3kb in size)",
-  "main": "./src/index.js",
-  "scripts": {
-    "test": "./src/test.index.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/SilentCicero/hyperapp-styled-components.git"
-  },
+  "name": "ryper-styled-components",
+  "version": "0.1.0",
+  "description": "A styled-components implementation for ryper (<3kb in size)",
   "keywords": [
     "styled",
     "components",
-    "hyperapp",
+    "ryper",
     "css",
     "frontend",
     "framework"
   ],
-  "author": "Nick Dodson <thenickdodson@gmail.com>",
-  "license": "MIT",
+  "homepage": "https://github.com/cizion/hyperapp-styled-components",
   "bugs": {
-    "url": "https://github.com/SilentCicero/hyperapp-styled-components/issues"
+    "url": "https://github.com/cizion/hyperapp-styled-components/issues",
+    "email": "dev@cizion.com"
   },
-  "homepage": "https://github.com/SilentCicero/hyperapp-styled-components#readme",
-  "dependencies": {
+  "author": "cizion <dev@cizion.com/> (https://github.com/cizion/hyperapp-styled-components/)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cizion/hyperapp-styled-components.git"
+  },
+  "main": "./dist/index.js",
+  "scripts": {
+    "build": "webpack --mode=production",
+    "test": "./src/test.index.js"
+  },
+  "devDependencies": {
     "@babel/cli": "^7.14.5",
     "@babel/core": "^7.14.6",
     "@babel/plugin-transform-runtime": "^7.14.5",
     "@babel/preset-env": "^7.14.7",
+    "babel-loader": "^8.2.2",
+    "webpack": "^5.41.1",
+    "webpack-cli": "^4.7.2"
+  },
+  "dependencies": {
+    "core-js": "^3.15.2",
     "hyperapp": "github:cizion/hyperapp"
-  }
+  },
+  "license": "MIT",
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie < 10"
+  ]
 }
