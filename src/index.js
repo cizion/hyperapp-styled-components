@@ -391,13 +391,15 @@ export const presets = (styled.presets = {
 
 styled.tags.forEach((tag) => (styled[tag] = makeElement(tag)));
 export const keyframes = (styled.keyframes = makeKeyframes);
-export const ThemeProvider = ({ theme, key }, children) => {
-  setTheme(theme);
-  return h("", { key }, children);
-};
-export const createGlobalStyle = (strings) => {
-  injectGlobal(strings);
-  buildAndRenderCSS([], [], { theme }, false);
 
-  return () => h("", {}, []);
+export const ThemeProvider = ({ theme }, children) => {
+  setTheme(theme);
+  return children;
+};
+
+export const createGlobalStyle = (strings, ...keys) => {
+  injectGlobal(strings, ...keys);
+  buildAndRenderCSS([], keys, { theme });
+
+  return (props, children) => children;
 };
